@@ -1,7 +1,7 @@
 m = require 'mithril'
 s = require 'mss-js'
-u = require './utils'
-style = require './style'
+u = require '../src/utils.coffee'
+style = require '../src/style.coffee'
 
 class Modal
     constructor: ({

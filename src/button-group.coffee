@@ -1,8 +1,8 @@
 m = require 'mithril'
 s = require 'mss-js'
-style = require './style'
-u = require './utils'
-Button = require './Button'
+style = require '../src/style.coffee'
+u = require '../src/utils.coffee'
+Button = require '../src/button.coffee'
 doneIcon = require 'mmsvg/google/msvg/action/done'
 
 class ButtonGroup

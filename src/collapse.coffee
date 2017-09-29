@@ -1,45 +1,45 @@
 m = require 'mithril'
 s = require 'mss-js'
-u = require './utils'
-style = require './style'
+u = require '../src/utils.coffee'
+style = require '../src/style.coffee'
 
 
 arrowRight = require 'mmsvg/google/msvg/hardware/keyboard-arrow-right'
 arrowDown = require 'mmsvg/google/msvg/hardware/keyboard-arrow-down'
 
-class Collaspe
+class Collapse
     constructor: ({
         @titleArray                # [String]
     ,   @widgetArray               # [mithril widget]
-    ,   @autoCollaspe = false      # Boolean
+    ,   @autoCollapse = false      # Boolean
     ,   @expandedIndexArray = []   # [Int]
     ,   @onExpand   = u.noOp       # Int -> a
-    ,   @onCollaspe = u.noOp       # Int -> a
+    ,   @onCollapse = u.noOp       # Int -> a
     }) ->
         @showWidget = false # Boolean
 
     onFoldInternal: (e) =>
         i = parseInt (u.getCurrentTargetData e, 'index')
-        if @autoCollaspe
+        if @autoCollapse
             if (j = @expandedIndexArray[0])?
-                @onCollaspe j
+                @onCollapse j
             @expandedIndexArray = [i]
             @onExpand i
 
         else if i in @expandedIndexArray
             u.removeFromArray @expandedIndexArray, i
-            @onCollaspe i
+            @onCollapse i
         else
             @expandedIndexArray.push i
             @onExpand i
 
     view: ->
         self = @
-        m '.Collaspe',
+        m '.Collapse',
             for title, i in @titleArray
                 expanded = i in @expandedIndexArray
                 [
-                    m '.CollaspeTitle'
+                    m '.CollapseTitle'
                     ,
                         key: 'title' + i
                         'data-index': i.toString()
@@ -48,7 +48,7 @@ class Collaspe
                         if expanded then u.svg arrowDown else u.svg arrowRight
                         m 'span', title
 
-                    m '.CollaspeBody'
+                    m '.CollapseBody'
                     ,
                         className: if expanded then 'Current' else ''
                         key: 'body' + i
@@ -56,9 +56,9 @@ class Collaspe
                     ,    if expanded then @widgetArray[i].view()
                 ]
 
-Collaspe.mss =
-    Collaspe:
-        CollaspeTitle: s.LineSize('2em', '1em')
+Collapse.mss =
+    Collapse:
+        CollapseTitle: s.LineSize('2em', '1em')
             color: style.text[8]
             background: style.main[4]
             border: '1px solid ' + style.main[4]
@@ -74,8 +74,8 @@ Collaspe.mss =
             span:
                 verticalAlign: 'middle'
 
-        CollaspeBody:
+        CollapseBody:
             border: '1px solid ' + style.border[4]
             borderTop: 'none'
 
-module.exports = Collaspe
+module.exports = Collapse

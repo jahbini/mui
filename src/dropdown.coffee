@@ -1,10 +1,10 @@
 m = require 'mithril'
 s = require 'mss-js'
 
-style = require './style'
-u = require './utils'
+style = require '../src/style.coffee'
+u = require '../src/utils.coffee'
 
-AutoHide = require './AutoHide'
+AutoHide = require '../src/auto-hide.coffee'
 
 class Dropdown
     constructor: ({

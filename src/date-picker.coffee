@@ -1,10 +1,10 @@
 m = require 'mithril'
 s = require 'mss-js'
-u = require './utils'
-AutoHide = require './AutoHide'
+u = require '../src/utils.coffee'
+AutoHide = require '../src/auto-hide.coffee'
 
-style = require './style'
-i18n = require './i18n'
+style = require '../src/style.coffee'
+i18n = require '../src/i18n.coffee'
 dateIcon = require 'mmsvg/google/msvg/action/date-range'
 
 hourArray = (u.formatXX x for x in [0..23])

@@ -1,7 +1,7 @@
 m = require 'mithril'
 s = require 'mss-js'
-style = require './style'
-u = require './utils'
+style = require '../src/style.coffee'
+u = require '../src/utils.coffee'
 
 class Button
     constructor: ({
